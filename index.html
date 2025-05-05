@@ -1,62 +1,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 
-  <title>Cocos Creator | Clicker</title>
+    <title>Nexus Rampage</title>
 
-  <!--http://www.html5rocks.com/en/mobile/mobifying/-->
-  <meta name="viewport"
-        content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true"/>
+    <script>
+        const useMock = false;
 
-  <!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="format-detection" content="telephone=no">
+        if (!useMock) {
+            const script = document.createElement('script');
+            script.src = "https://telegram.org/js/telegram-web-app.js";
+            script.onload = () => { console.log("Telegram WebApp SDK загружено."); window.Telegram.WebApp.expand(); window.Telegram.WebApp.requestFullscreen(); };
+            script.onerror = () => { console.error('Не удалось загрузить Telegram WebApp SDK.'); };
+            document.head.appendChild(script);
+        } else {
+            window.Telegram = {
+                WebApp: {
+                    initDataUnsafe: {
+                        user: {
+                            id: "123456",
+                            first_name: "Test",
+                            last_name: "User",
+                            username: "testuser"
+                        }
+                    },
+                    HapticFeedback: {
+                        impactOccurred: () => console.log("Mock haptic feedback triggered"),
+                    },
+                    onEvent: (eventName, handler) => console.log(`Mock event triggered: ${eventName}`),
+                    ready: () => console.log("Mock WebApp ready"),
+                    expand: () => console.log("Mock WebApp expanded"),
+                    openTelegramLink: (url) => console.log(`Mock opened Telegram link: ${url}`),
+                    openLink: (url) => console.log(`Mock opened link: ${url}`),
+                    shareToStory: (media_url, params) => console.log(`Mock shared story: ${media_url}`, params)
+                }
+            };
+        }
+    </script>
 
-  <!-- force webkit on 360 -->
-  <meta name="renderer" content="webkit"/>
-  <meta name="force-rendering" content="webkit"/>
-  <!-- force edge on IE -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <meta name="msapplication-tap-highlight" content="no">
+    <!--http://www.html5rocks.com/en/mobile/mobifying/-->
+    <meta name="viewport"
+          content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true"/>
 
-  <!-- force full screen on some browser -->
-  <meta name="full-screen" content="yes"/>
-  <meta name="x5-fullscreen" content="true"/>
-  <meta name="360-fullscreen" content="true"/>
+    <!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
 
-  <!--fix fireball/issues/3568 -->
-  <!--<meta name="browsermode" content="application">-->
-  <meta name="x5-page-mode" content="app">
+    <!-- force webkit on 360 -->
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <!-- force edge on IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="msapplication-tap-highlight" content="no">
 
-  <!--<link rel="apple-touch-icon" href=".png" />-->
-  <!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
+    <!-- force full screen on some browser -->
+    <meta name="full-screen" content="yes"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
 
-  <link rel="stylesheet" type="text/css" href="style.css"/>
+    <!--fix fireball/issues/3568 -->
+    <!--<meta name="browsermode" content="application">-->
+    <meta name="x5-page-mode" content="app">
 
+    <!--<link rel="apple-touch-icon" href=".png" />-->
+    <!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
+
+    <link rel="stylesheet" type="text/css" href="style.f76d1.css"/>
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
 </head>
 <body>
-  <div id="GameDiv" cc_exact_fit_screen="true">
-      <div id="Cocos3dGameContainer">
+<div id="GameDiv" cc_exact_fit_screen="true">
+    <div id="Cocos3dGameContainer">
         <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="99"></canvas>
-      </div>
     </div>
-  
+</div>
+
+
 
 <!-- Polyfills bundle. -->
 
-<script src="src/polyfills.bundle.js" charset="utf-8"> </script>
+<script src="src/polyfills.bundle.5adbf.js" charset="utf-8"> </script>
 
 
 <!-- SystemJS support. -->
-<script src="src/system.bundle.js" charset="utf-8"> </script>
+<script src="src/system.bundle.543e6.js" charset="utf-8"> </script>
 
 <!-- Import map -->
-<script src="src/import-map.json" type="systemjs-importmap" charset="utf-8"> </script>
+<script src="src/import-map.d7fb5.json" type="systemjs-importmap" charset="utf-8"> </script>
 
 <script>
-    System.import('./index.js').catch(function(err) { console.error(err); })
+    System.import('./index.fc3cb.js').catch(function(err) { console.error(err); })
 </script>
 
 </body>
